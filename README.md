@@ -1,101 +1,96 @@
 # Car Price Prediction FastAPI
 
-## Описание
+## Description
 
-Сервис для получения прогнозов на цены автомобилей с использованием простых регрессионных моделей машинного обучения. В рамках проекта была выполнена серия шагов по подготовке данных, выбору моделей и их оптимизации. Основное внимание уделялось обработке данных, созданию новых признаков, подбору гиперпараметров и анализу результатов с использованием кастомных метрик. Включает FastAPI-сервис для получения предсказаний в реальном времени.
+A service for predicting car prices using simple regression machine learning models. The project involved comprehensive data preparation, model selection, and optimization steps. Special emphasis was placed on data preprocessing, feature engineering, hyperparameter tuning, and custom metrics evaluation. It also includes a FastAPI service for real-time predictions.
 
-### Доступ
+### Access
 
-Сервис не был развернут, но может быть запущен локально.
+The service has not been deployed but can be run locally.
 
-## Демо
+## Demo
 
-Одиночное предсказание (predict_item):
+Single prediction (`predict_item`):
 
 ![image](https://github.com/user-attachments/assets/77c5d02b-6576-43f4-9598-79a97f9136cd)
 ![image](https://github.com/user-attachments/assets/09c491a0-21b2-4d62-8df3-9d4b6b7db089)
 
-Работа с файлами (predict_items):
+Working with files (`predict_items`):
 
 ![image](https://github.com/user-attachments/assets/e9c570fd-d09c-4828-b274-1f2b812d3785)
 ![image](https://github.com/user-attachments/assets/6f64fde6-03a9-473f-8a42-58953fd80af0)
 ![image](https://github.com/user-attachments/assets/c8df9c99-48d6-47d6-958e-cd75a3b14fc4)
 ![image](https://github.com/user-attachments/assets/c6285115-78c6-4db7-9d8e-85714f42e74d)
 
-## Что было сделано
+## Completed Tasks
 
-1. **Анализ данных (EDA):**
-   - Проанализированы основные зависимости между признаками и целевой переменной.
-   - Построены тепловые карты корреляции и выявлены признаки с наибольшим влиянием на целевую переменную.
-   - Найдены потенциально значимые нелинейные зависимости.
+1. **Exploratory Data Analysis (EDA):**
+   - Analyzed key relationships between features and the target variable.
+   - Built correlation heatmaps and identified features with the strongest impact.
+   - Discovered potentially significant nonlinear relationships.
 
-2. **Предобработка данных:**
-   - Выполнено заполнение пропусков медианами и внедрение dummy-столбцов для указания на места пропусков.
-   - Применено логарифмирование и другие трансформации для приведения данных к более нормальному распределению.
-   - Реализовано OneHot-кодирование для категориальных признаков с корректным учетом мультиколлинеарности.
+2. **Data Preprocessing:**
+   - Filled missing values using medians and introduced dummy columns to flag missing data.
+   - Applied logarithmic and other transformations to approximate normal distributions.
+   - Implemented OneHot encoding for categorical variables while properly handling multicollinearity.
 
-3. **Feature engineering:**
-   - Созданы новые признаки на основе анализа зависимостей, включая квадратичные и логарифмические преобразования.
-   - Добавлены дополнительные признаки, такие как "количество лошадиных сил на единицу объема двигателя".
+3. **Feature Engineering:**
+   - Created new features based on identified relationships, including quadratic and logarithmic transformations.
+   - Added additional derived features such as "horsepower per engine volume."
 
-4. **Модели:**
-   - Построены и обучены различные регрессионные модели, включая Lasso, Ridge и ElasticNet.
-   - Подобраны оптимальные гиперпараметры с использованием GridSearchCV и кросс-валидации (10 фолдов).
-   - Реализован FastAPI-сервис для работы с моделями:
-     - Выдача предсказания стоимости по одному объекту.
-     - Массовое предсказание стоимости по данным из загружаемого CSV-файла.
+4. **Models:**
+   - Built and trained various regression models, including Lasso, Ridge, and ElasticNet.
+   - Performed hyperparameter optimization using GridSearchCV with 10-fold cross-validation.
+   - Developed a FastAPI service for real-time interaction:
+     - Single item price prediction.
+     - Bulk price predictions via uploaded CSV files.
 
-5. **Кастомные метрики:**
-   - Реализованы бизнес-метрики для оценки качества моделей:
-     - Первая метрика измеряла долю предсказаний, отклоняющихся от реальных значений не более чем на 10%.
-     - Вторая метрика усиливала штраф за недопрогноз, так как он был признан более важным для бизнеса.
-   - Проведен сравнительный анализ моделей по этим метрикам.
+5. **Custom Metrics:**
+   - Developed business-oriented metrics to evaluate model quality:
+     - First metric measured the share of predictions within ±10% of actual values.
+     - Second metric penalized under-predictions more heavily, aligning with business priorities.
+   - Conducted comparative analysis of models based on these metrics.
 
-## Результаты
+## Results
 
-1. **Качество моделей:**
-   - Лучшие результаты показала модель `Lasso` после обработки данных и добавления новых признаков:
+1. **Model Quality:**
+   - The `Lasso` model yielded the best results after data preprocessing and feature engineering:
      - $R^2$: `0.8232`
      - $MSE$: `101617170814.93`
-   - Использование кастомной метрики подтвердило, что `Lasso` лучше всего решает задачу бизнеса, обеспечивая минимальные ошибки недопрогноза.
+   - Custom business metrics confirmed that `Lasso` best met business requirements by minimizing underestimation errors.
 
-2. **Влияние feature engineering:**
-   - Добавление квадратичного преобразования признака `year` дало наибольший прирост качества модели:
-     - $R^2$ увеличилось с `0.7563` до `0.7931`.
-   - Добавление нового признака на основе `engine` улучшило результат ещё на `0.03` по $R^2$.
+2. **Impact of Feature Engineering:**
+   - Quadratic transformation of the `year` feature provided the greatest performance boost:
+     - Increased $R^2$ from `0.7563` to `0.7931`.
+   - Adding the derived `engine`-based feature further improved $R^2$ by an additional `0.03`.
 
-3. **FastAPI-сервис:**
-   - Успешно создан и протестирован. Поддерживает как одиночное предсказание, так и работу с файлами.
-   - Обеспечивает интеграцию модели в реальное приложение.
+3. **FastAPI Service:**
+   - Successfully developed and tested, supporting both single and batch predictions.
+   - Provides seamless integration of the predictive model into real-world applications.
 
-## Что дало наибольший буст в качестве
+## Main Performance Drivers
 
-1. **Создание новых признаков:**
-   - Квадратичное преобразование года (`year`) оказалось ключевым, так как зависимость целевой переменной от этого признака изначально была нелинейной.
-   - Логарифмирование числовых признаков, таких как `max_torque_rpm`, также положительно сказалось на качестве.
+1. **Feature Creation:**
+   - The quadratic transformation of `year` was crucial due to the originally nonlinear relationship with the target.
+   - Logarithmic transformations of numeric features (e.g., `max_torque_rpm`) also improved model performance.
 
-2. **Применение Lasso-регрессии:**
-   - Регуляризация позволила исключить шумовые признаки, что улучшило обобщающую способность модели.
+2. **Lasso Regression Application:**
+   - Regularization eliminated noisy features, enhancing the model's generalization capability.
 
-3. **Кастомные метрики:**
-   - Оптимизация под бизнес-метрики позволила лучше соответствовать требованиям заказчика.
+3. **Custom Business Metrics:**
+   - Optimization for custom metrics better aligned model predictions with business requirements.
 
-## Что не получилось
+## Challenges Faced
 
-1. **Удаление нерелевантных признаков:**
-   - Попытки удалить признаки с низкими коэффициентами в линейных моделях ухудшали качество, так как многие признаки оказывались полезными только в сочетании с другими.
+1. **Removing Irrelevant Features:**
+   - Attempts to remove low-importance features decreased performance since many features provided value only when combined with others.
 
-2. **Использование ElasticNet:**
-   - Модель ElasticNet не показала значительных улучшений. Возможно, это связано с доминирующим эффектом L1-регуляризации, который уже был реализован в Lasso.
+2. **ElasticNet Usage:**
+   - ElasticNet did not yield significant improvements, possibly due to the dominance of L1-regularization already utilized by Lasso.
 
-3. **Работа с выбросами:**
-   - Несмотря на анализ, удаление выбросов в данных не привело к улучшению качества модели, так как выбросы содержали важную информацию.
+3. **Outlier Handling:**
+   - Despite careful analysis, removing outliers did not improve model performance, as these outliers often contained valuable information.
 
-## Заключение
+## Conclusion
 
-Проект продемонстрировал, что качественная предобработка данных и экспериментирование с признаками играют ключевую роль в построении успешной модели. FastAPI-сервис обеспечивает удобную интеграцию модели в реальный бизнес-сценарий, что делает решение практически применимым. Однако удаление шумовых данных и работа с выбросами требуют дополнительного изучения.
-
-
-
-
-
+The project demonstrated the critical importance of thorough data preprocessing and feature experimentation in building effective models. The FastAPI service facilitates easy integration into real business scenarios, making the solution practically applicable. However, further investigation is necessary into effective noise removal and outlier management strategies.
