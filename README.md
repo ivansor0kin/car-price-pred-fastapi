@@ -2,7 +2,7 @@
 
 ## Description
 
-A service for predicting car prices using simple regression machine learning models. The project involved comprehensive data preparation, model selection, and optimization steps. Special emphasis was placed on data preprocessing, feature engineering, hyperparameter tuning, and custom metrics evaluation. It also includes a FastAPI service for real-time predictions.
+A service for predicting car prices using simple regression ML models. The project involved comprehensive data preparation, model selection, and optimization steps. Special emphasis was placed on data preprocessing, feature engineering, hyperparameter tuning, and custom metrics evaluation. It also includes a FastAPI service for real-time predictions.
 
 ### Access
 
