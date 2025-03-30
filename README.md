@@ -4,7 +4,7 @@
 
 A service for predicting car prices using simple regression ML models. The project involved comprehensive data preparation, model selection, and optimization steps. Special emphasis was placed on data preprocessing, feature engineering, hyperparameter tuning, and custom metrics evaluation. It also includes a FastAPI service for real-time predictions.
 
-*File content is currently in Russian, but is going to be fully translated to English.*
+*File contents are currently in Russian, but is going to be fully translated to English.*
 
 ### Access
 
