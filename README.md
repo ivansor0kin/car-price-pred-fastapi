@@ -8,6 +8,18 @@
 
 Сервис не был развернут, но может быть запущен локально.
 
+## Демо
+
+Одиночное предсказание (predict_item):
+![image](https://github.com/user-attachments/assets/77c5d02b-6576-43f4-9598-79a97f9136cd)
+![image](https://github.com/user-attachments/assets/09c491a0-21b2-4d62-8df3-9d4b6b7db089)
+
+Работа с файлами (predict_items):
+![image](https://github.com/user-attachments/assets/e9c570fd-d09c-4828-b274-1f2b812d3785)
+![image](https://github.com/user-attachments/assets/6f64fde6-03a9-473f-8a42-58953fd80af0)
+![image](https://github.com/user-attachments/assets/c8df9c99-48d6-47d6-958e-cd75a3b14fc4)
+![image](https://github.com/user-attachments/assets/c6285115-78c6-4db7-9d8e-85714f42e74d)
+
 ## Что было сделано
 
 1. **Анализ данных (EDA):**
@@ -53,16 +65,6 @@
 3. **FastAPI-сервис:**
    - Успешно создан и протестирован. Поддерживает как одиночное предсказание, так и работу с файлами.
    - Обеспечивает интеграцию модели в реальное приложение.
-
-Одиночное предсказание (predict_item):
-![image](https://github.com/user-attachments/assets/77c5d02b-6576-43f4-9598-79a97f9136cd)
-![image](https://github.com/user-attachments/assets/09c491a0-21b2-4d62-8df3-9d4b6b7db089)
-
-Работа с файлами (predict_items):
-![image](https://github.com/user-attachments/assets/e9c570fd-d09c-4828-b274-1f2b812d3785)
-![image](https://github.com/user-attachments/assets/6f64fde6-03a9-473f-8a42-58953fd80af0)
-![image](https://github.com/user-attachments/assets/c8df9c99-48d6-47d6-958e-cd75a3b14fc4)
-![image](https://github.com/user-attachments/assets/c6285115-78c6-4db7-9d8e-85714f42e74d)
 
 ## Что дало наибольший буст в качестве
 
